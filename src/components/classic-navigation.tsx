@@ -12,12 +12,12 @@ import {
 } from "@react-navigation/native";
 import * as AppleColors from "@bacons/apple-colors";
 
-import IndexScreen from "@/components/routes/index";
-import IndexLoading from "@/components/routes/index+loading";
-import InfoScreen from "@/components/routes/info";
-import InfoLoading from "@/components/routes/info+loading";
-import DetailScreen from "@/components/routes/details";
-import DetailsLoading from "@/components/routes/details+loading";
+import IndexScreen from "@/routes/index";
+import IndexLoading from "@/routes/index+loading";
+import InfoScreen from "@/routes/info";
+import InfoLoading from "@/routes/info+loading";
+import DetailScreen from "@/routes/details";
+import DetailsLoading from "@/routes/details+loading";
 
 function createScreen({
   renderScreen,
