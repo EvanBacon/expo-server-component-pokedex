@@ -16,6 +16,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@bacons/apple-colors": "^0.0.6",
     "@expo/vector-icons": "^14.0.2",
     "@react-navigation/native": "7.0.0-rc.20",
     "expo": "~52.0.0-preview.4",
