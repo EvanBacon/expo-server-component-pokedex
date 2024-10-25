@@ -75,7 +75,7 @@ const items = [
 ];
 
 async function IndexRoute() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  // await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"

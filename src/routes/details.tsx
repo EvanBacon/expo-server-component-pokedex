@@ -29,6 +29,7 @@ async function DetailScreen({ params }: { params: { id: string } }) {
 
   //   console.log('name', { id: params.id, name, image: mockData.sprites.front_default });
 
+  console.log(mockData);
   return (
     <>
       <ScreenOptions title={name} />
@@ -41,10 +42,18 @@ async function DetailScreen({ params }: { params: { id: string } }) {
         automaticallyAdjustsScrollIndicatorInsets
       >
         <FadeIn>
-          <Image
-            source={{ uri: mockData.sprites.front_default }}
-            style={{ width: "100%", height: 300, resizeMode: "contain" }}
-          />
+          <ScrollView horizontal pagingEnabled>
+            {[
+              mockData.sprites.front_default || mockData.sprites.front_shiny,
+              mockData.sprites.back_default || mockData.sprites.back_shiny,
+            ].map((img, index) => (
+              <Image
+                key={index}
+                source={{ uri: img }}
+                style={{ width: 360, height: 300, resizeMode: "contain" }}
+              />
+            ))}
+          </ScrollView>
         </FadeIn>
 
         <FadeIn>
