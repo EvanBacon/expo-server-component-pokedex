@@ -1,15 +1,34 @@
-'use client';
+"use client";
 
-import React, { useRef, useEffect, useState, ReactNode } from 'react';
-import { View, StyleSheet, Animated, Easing, ViewStyle } from 'react-native';
+import React from "react";
+import { View, StyleSheet, Animated, Easing, ViewStyle } from "react-native";
 
-interface SkeletonProps {
-  style?: ViewStyle;
-  bgColor?: string;
-  isLoading?: boolean;
-  children?: ReactNode;
-  delay?: number;
-}
+const BASE_COLORS = {
+  dark: { primary: "rgb(17, 17, 17)", secondary: "rgb(51, 51, 51)" },
+  light: {
+    primary: "rgb(250, 250, 250)",
+    secondary: "rgb(205, 205, 205)",
+  },
+} as const;
+
+const makeColors = (mode: keyof typeof BASE_COLORS) => [
+  BASE_COLORS[mode].primary,
+  BASE_COLORS[mode].secondary,
+  BASE_COLORS[mode].secondary,
+  BASE_COLORS[mode].primary,
+  BASE_COLORS[mode].secondary,
+  BASE_COLORS[mode].primary,
+];
+
+const DARK_COLORS = new Array(3)
+  .fill(0)
+  .map(() => makeColors("dark"))
+  .flat();
+
+const LIGHT_COLORS = new Array(3)
+  .fill(0)
+  .map(() => makeColors("light"))
+  .flat();
 
 export const SkeletonBox = ({
   width,
@@ -38,26 +57,35 @@ export const SkeletonBox = ({
   );
 };
 
-const Skeleton = ({ style, bgColor = offWhite, delay }: SkeletonProps = {}) => {
-  const translateX = useRef(new Animated.Value(-1)).current;
-  const [width, setWidth] = useState(150);
+const Skeleton = ({
+  style,
+  delay,
+  dark,
+}: {
+  style?: ViewStyle;
+  delay?: number;
+  dark?: boolean;
+} = {}) => {
+  const translateX = React.useRef(new Animated.Value(-1)).current;
+  const [width, setWidth] = React.useState(150);
 
+  const colors = dark ? DARK_COLORS : LIGHT_COLORS;
   const targetRef = React.useRef<View>(null);
 
-  const onLayout = React.useCallback((event) => {
-    targetRef.current?.measureInWindow((x, y, width, height) => {
+  const onLayout = React.useCallback(() => {
+    targetRef.current?.measureInWindow((_x, _y, width, _height) => {
       setWidth(width);
     });
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     Animated.loop(
       Animated.sequence([
         Animated.timing(translateX, {
           delay: delay || 0,
           toValue: 1,
-          duration: 3000,
-          useNativeDriver: process.env.EXPO_OS !== 'web',
+          duration: 5000,
+          useNativeDriver: process.env.EXPO_OS !== "web",
           // Ease in
           easing: Easing.in(Easing.ease),
         }),
@@ -71,7 +99,7 @@ const Skeleton = ({ style, bgColor = offWhite, delay }: SkeletonProps = {}) => {
         {
           translateX: translateX.interpolate({
             inputRange: [-1, 1],
-            outputRange: [-width * 2, width * 1],
+            outputRange: [-width * 8, width],
           }),
         },
       ],
@@ -84,20 +112,31 @@ const Skeleton = ({ style, bgColor = offWhite, delay }: SkeletonProps = {}) => {
       ref={targetRef}
       style={[
         {
-          minHeight: 32,
           height: 32,
           borderRadius: 8,
+          borderCurve: "continuous",
+          overflow: "hidden",
+          backgroundColor: "transparent",
         },
         style,
-        { overflow: 'hidden', backgroundColor: bgColor },
       ]}
-      onLayout={onLayout}>
-      <Animated.View style={[translateXStyle, { width: '200%', height: '100%' }]}>
+      onLayout={onLayout}
+    >
+      <Animated.View
+        style={[
+          translateXStyle,
+          { width: "800%", height: "100%", backgroundColor: "transparent" },
+        ]}
+      >
         <Animated.View
           style={[
             StyleSheet.absoluteFill,
             {
-              experimental_backgroundImage: `linear-gradient(to right, ${bgColor}, rgb(205, 205, 205), rgb(205, 205, 205), ${bgColor}, rgb(205, 205, 205), ${bgColor})`,
+              [process.env.EXPO_OS === "web"
+                ? `backgroundImage`
+                : `experimental_backgroundImage`]: `linear-gradient(to right, ${colors.join(
+                ", "
+              )})`,
             },
           ]}
         />
@@ -105,7 +144,5 @@ const Skeleton = ({ style, bgColor = offWhite, delay }: SkeletonProps = {}) => {
     </View>
   );
 };
-
-const offWhite = '#f9f9f9';
 
 export default Skeleton;

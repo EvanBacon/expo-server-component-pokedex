@@ -1,14 +1,18 @@
-'use client';
-import { TouchableHighlight, View, ViewProps, TouchableHighlightProps } from 'react-native';
+"use client";
+import {
+  TouchableHighlight,
+  View,
+  ViewProps,
+  TouchableHighlightProps,
+} from "react-native";
 
-// import { IconSymbol } from './IconSymbol';
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const Colors = {
-  systemGray4: 'rgba(209, 209, 214, 1)',
-  secondarySystemGroupedBackground: 'rgba(255, 255, 255, 1)',
-  separator: 'rgba(61.2, 61.2, 66, 0.29)',
+  systemGray4: "rgba(209, 209, 214, 1)",
+  secondarySystemGroupedBackground: "rgba(255, 255, 255, 1)",
+  separator: "rgba(61.2, 61.2, 66, 0.29)",
 };
 
 export function FormItem({
@@ -16,8 +20,11 @@ export function FormItem({
   onPress,
   screen,
   params,
-}: Pick<ViewProps, 'children'> &
-  Pick<TouchableHighlightProps, 'onPress'> & { screen?: string; params?: Record<string, any> }) {
+}: Pick<ViewProps, "children"> &
+  Pick<TouchableHighlightProps, "onPress"> & {
+    screen?: string;
+    params?: Record<string, any>;
+  }) {
   let leadingIconChild: React.ReactNode;
   let parsedChildren: React.ReactNode[] = [];
   React.Children.forEach(children, (child, index) => {
@@ -46,8 +53,9 @@ export function FormItem({
               navigation.navigate(screen, params);
             }
           : onPress
-      }>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+      }
+    >
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
         {leadingIconChild}
         {parsedChildren}
       </View>

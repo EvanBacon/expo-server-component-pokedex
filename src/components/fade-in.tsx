@@ -1,7 +1,7 @@
-'use client';
-import { Image, Animated, ScrollView, Text, View } from 'react-native';
+"use client";
 
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from "react";
+import { Animated } from "react-native";
 
 export function FadeIn({ children }) {
   const opacity = useRef(new Animated.Value(0)).current;

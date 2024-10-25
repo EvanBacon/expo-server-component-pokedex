@@ -1,10 +1,10 @@
-import { StyleSheet, View, ViewProps } from 'react-native';
-import React from 'react';
+import { View, ViewProps } from "react-native";
+import React from "react";
 
 const Colors = {
-  systemGray4: 'rgba(209, 209, 214, 1)',
-  secondarySystemGroupedBackground: 'rgba(255, 255, 255, 1)',
-  separator: 'rgba(61.2, 61.2, 66, 0.29)',
+  systemGray4: "rgba(209, 209, 214, 1)",
+  secondarySystemGroupedBackground: "rgba(255, 255, 255, 1)",
+  separator: "rgba(61.2, 61.2, 66, 0.29)",
 };
 
 export function FormList({ children, ...props }: ViewProps) {
@@ -26,8 +26,8 @@ export function FormList({ children, ...props }: ViewProps) {
       {...props}
       style={[
         {
-          borderCurve: 'continuous',
-          overflow: 'hidden',
+          borderCurve: "continuous",
+          overflow: "hidden",
           borderRadius: 10,
 
           backgroundColor: Colors.secondarySystemGroupedBackground,
