@@ -1,9 +1,9 @@
 "use server";
 
 import { Image, ScrollView, Text } from "react-native";
-import { ScreenOptions } from "../react-navigation";
-import { FormItem } from "../form";
-import { FormList } from "../form-list";
+import { ScreenOptions } from "@/components/react-navigation";
+import { FormItem } from "@/components/form";
+import { FormList } from "@/components/form-list";
 
 const Colors = {
   systemBlue: "rgba(0, 122, 255, 1)",
