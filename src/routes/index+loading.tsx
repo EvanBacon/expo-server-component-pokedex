@@ -11,9 +11,13 @@ export default function Loading() {
       automaticallyAdjustsScrollIndicatorInsets
     >
       <View style={{ padding: 16, gap: 8 }}>
-        <SkeletonBox width={100} height={50} />
-        <Skeleton />
-        <Skeleton />
+        {new Array(10).fill(null).map((_, i) => (
+          <Skeleton
+            delay={30 * i}
+            key={i}
+            style={{ borderRadius: 10, height: 64 }}
+          />
+        ))}
       </View>
     </ScrollView>
   );

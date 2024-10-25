@@ -1,6 +1,6 @@
 "use server";
 
-import { Image, ScrollView, Text } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import { ScreenOptions } from "@/components/react-navigation";
 import { FormItem } from "@/components/form";
 import { FormList } from "@/components/form-list";
@@ -13,7 +13,7 @@ const Colors = {
 
 import { FadeIn } from "../components/fade-in";
 
-async function DetailScreen({ params }) {
+async function DetailScreen({ params }: { params: { id: string } }) {
   if (!params?.id) {
     throw new Error("No id provided to details route");
   }
@@ -48,44 +48,46 @@ async function DetailScreen({ params }) {
         </FadeIn>
 
         <FadeIn>
-          <SectionTitle>Types</SectionTitle>
-          <FormList>
-            {mockData.types.map((type) => (
-              <>
-                <FormItem>
-                  <Text
-                    style={{
-                      color: Colors.label,
-                      fontSize: 18,
-                      fontWeight: "600",
-                    }}
-                  >
-                    {type.type.name}
-                  </Text>
-                </FormItem>
-              </>
-            ))}
-          </FormList>
+          <View style={{ gap: 8 }}>
+            <SectionTitle>Types</SectionTitle>
+            <FormList>
+              {mockData.types.map((type) => (
+                <>
+                  <FormItem>
+                    <Text
+                      style={{
+                        color: Colors.label,
+                        fontSize: 18,
+                        fontWeight: "600",
+                      }}
+                    >
+                      {type.type.name}
+                    </Text>
+                  </FormItem>
+                </>
+              ))}
+            </FormList>
 
-          <SectionTitle>Moves</SectionTitle>
+            <SectionTitle>Moves</SectionTitle>
 
-          <FormList>
-            {mockData.moves.map((type) => (
-              <>
-                <FormItem>
-                  <Text
-                    style={{
-                      color: Colors.label,
-                      fontSize: 18,
-                      fontWeight: "600",
-                    }}
-                  >
-                    {type.move.name}
-                  </Text>
-                </FormItem>
-              </>
-            ))}
-          </FormList>
+            <FormList>
+              {mockData.moves.map((type) => (
+                <>
+                  <FormItem>
+                    <Text
+                      style={{
+                        color: Colors.label,
+                        fontSize: 18,
+                        fontWeight: "600",
+                      }}
+                    >
+                      {type.move.name}
+                    </Text>
+                  </FormItem>
+                </>
+              ))}
+            </FormList>
+          </View>
         </FadeIn>
       </ScrollView>
     </>
