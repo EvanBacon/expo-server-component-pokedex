@@ -55,7 +55,8 @@ export default async function DetailScreen({
               <Image
                 key={index}
                 source={{ uri: img }}
-                style={{ width: 360, height: 300, resizeMode: "contain" }}
+                style={{ width: 360, height: 300 }}
+                resizeMode="contain"
               />
             ))}
           </ScrollView>
