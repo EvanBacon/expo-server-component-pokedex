@@ -31,10 +31,6 @@ export default async function DetailScreen({
 
   // upper first
   name = name.charAt(0).toUpperCase() + name.slice(1);
-
-  //   console.log('name', { id: params.id, name, image: mockData.sprites.front_default });
-
-  console.log(data);
   return (
     <>
       <ScreenOptions title={name} />

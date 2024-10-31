@@ -1,8 +1,7 @@
 "use server";
 
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { FormItem } from "@/components/form";
-import { FormList } from "@/components/form-list";
 import { PAGES } from "./local-data";
 
 const Colors = {
@@ -74,43 +73,6 @@ const items = [
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
   },
 ];
-
-export default async function IndexRoute() {
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
-  return (
-    <ScrollView
-      contentInsetAdjustmentBehavior="automatic"
-      automaticallyAdjustsScrollIndicatorInsets
-      contentContainerStyle={{
-        padding: 16,
-        gap: 16,
-      }}
-    >
-      <FormList>
-        {items.map(({ id, name, image }) => (
-          <FormItem href={"/detail/" + id} key={String(id)}>
-            <Image
-              source={{ uri: image }}
-              style={{ width: 60, height: 48 }}
-              resizeMode="contain"
-            />
-            <View style={{ gap: 4 }}>
-              <Text
-                style={{
-                  color: Colors.label,
-                  fontSize: 18,
-                  fontWeight: "600",
-                }}
-              >
-                {name}
-              </Text>
-            </View>
-          </FormItem>
-        ))}
-      </FormList>
-    </ScrollView>
-  );
-}
 
 export async function fetchPokemonAsync({ next }: { next?: string }) {
   const data = (await fetch(next ?? "https://pokeapi.co/api/v2/pokemon").then(
