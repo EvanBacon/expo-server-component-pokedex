@@ -1,8 +1,8 @@
-'use dom';
+"use dom";
 
-import '../global.css';
+import "../global.css";
 
-export default function Page() {
+export default function Page(_: { dom?: import("expo/dom").DOMProps }) {
   // Tailwind info page
   return (
     <main className="container mx-auto p-4">

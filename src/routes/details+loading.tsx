@@ -14,7 +14,7 @@ export default function DetailsLoading() {
         contentInsetAdjustmentBehavior="automatic"
         automaticallyAdjustsScrollIndicatorInsets
       >
-        <View style={{ padding: 16, gap: 12, gap: 12 }}>
+        <View style={{ padding: 16, gap: 12 }}>
           <View style={{ alignItems: "center" }}>
             <View
               style={{
@@ -30,7 +30,6 @@ export default function DetailsLoading() {
             style={{
               height: 100,
               borderCurve: "continuous",
-
               borderRadius: 10,
             }}
           />
@@ -40,7 +39,6 @@ export default function DetailsLoading() {
               marginTop: 64,
               height: 200,
               borderCurve: "continuous",
-
               borderRadius: 10,
             }}
           />

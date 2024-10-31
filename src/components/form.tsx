@@ -1,13 +1,7 @@
-"use client";
-import {
-  TouchableHighlight,
-  View,
-  ViewProps,
-  TouchableHighlightProps,
-} from "react-native";
+import { TouchableHighlight, View, ViewProps } from "react-native";
 
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import { Href, Link } from "expo-router";
 
 const Colors = {
   systemGray4: "rgba(209, 209, 214, 1)",
@@ -17,48 +11,18 @@ const Colors = {
 
 export function FormItem({
   children,
-  onPress,
-  screen,
-  params,
-}: Pick<ViewProps, "children"> &
-  Pick<TouchableHighlightProps, "onPress"> & {
-    screen?: string;
-    params?: Record<string, any>;
-  }) {
-  let leadingIconChild: React.ReactNode;
-  let parsedChildren: React.ReactNode[] = [];
-  React.Children.forEach(children, (child, index) => {
-    if (!React.isValidElement(child)) return;
-
-    // if (child.type === IconSymbol && index === 0) {
-    //   leadingIconChild = React.cloneElement(child, {
-    //     size: 24,
-    //     style: { width: 60, top: 0 },
-    //     ...child.props,
-    //   });
-    // } else {
-    parsedChildren.push(child);
-    // }
-  });
-
-  const navigation = useNavigation();
-
+  href,
+}: Pick<ViewProps, "children"> & { href: Href<any> }) {
   return (
-    <TouchableHighlight
-      style={[{ padding: 12, paddingLeft: !!leadingIconChild ? 0 : 16 }]}
-      underlayColor={Colors.systemGray4}
-      onPress={
-        screen
-          ? () => {
-              navigation.navigate(screen, params);
-            }
-          : onPress
-      }
-    >
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        {leadingIconChild}
-        {parsedChildren}
-      </View>
-    </TouchableHighlight>
+    <Link asChild href={href}>
+      <TouchableHighlight
+        style={{ padding: 12, paddingLeft: 16 }}
+        underlayColor={Colors.systemGray4}
+      >
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          {children}
+        </View>
+      </TouchableHighlight>
+    </Link>
   );
 }

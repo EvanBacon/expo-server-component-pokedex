@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { Animated } from "react-native";
 
-export function FadeIn({ children }) {
+export function FadeIn({ children }: { children: React.ReactNode }) {
   const opacity = useRef(new Animated.Value(0)).current;
   useMemo(() => {
     return Animated.timing(opacity, {

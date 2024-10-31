@@ -29,7 +29,7 @@
     "plugins": ["expo-router"],
     "experiments": {
       "typedRoutes": true,
-      "reactServerComponents": true
+      "reactServerActions": true
     }
   }
 }

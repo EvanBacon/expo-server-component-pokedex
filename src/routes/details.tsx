@@ -1,9 +1,12 @@
 "use server";
 
+import React from "react";
 import { Image, ScrollView, Text, View } from "react-native";
+
 import { ScreenOptions } from "@/components/react-navigation";
 import { FormItem } from "@/components/form";
 import { FormList } from "@/components/form-list";
+import { FadeIn } from "../components/fade-in";
 
 const Colors = {
   systemBlue: "rgba(0, 122, 255, 1)",
@@ -11,25 +14,27 @@ const Colors = {
   secondaryLabel: "rgba(61.2, 61.2, 66, 0.6)",
 };
 
-import { FadeIn } from "../components/fade-in";
-
-async function DetailScreen({ params }: { params: { id: string } }) {
+export default async function DetailScreen({
+  params,
+}: {
+  params: { id: string };
+}) {
   if (!params?.id) {
     throw new Error("No id provided to details route");
   }
 
-  const mockData = await fetch(
+  const data = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${params.id}`
   ).then((res) => res.json());
 
-  let name = mockData.forms[0].name;
+  let name = data.forms[0].name;
 
   // upper first
   name = name.charAt(0).toUpperCase() + name.slice(1);
 
   //   console.log('name', { id: params.id, name, image: mockData.sprites.front_default });
 
-  console.log(mockData);
+  console.log(data);
   return (
     <>
       <ScreenOptions title={name} />
@@ -44,8 +49,8 @@ async function DetailScreen({ params }: { params: { id: string } }) {
         <FadeIn>
           <ScrollView horizontal pagingEnabled>
             {[
-              mockData.sprites.front_default || mockData.sprites.front_shiny,
-              mockData.sprites.back_default || mockData.sprites.back_shiny,
+              data.sprites.front_default || data.sprites.front_shiny,
+              data.sprites.back_default || data.sprites.back_shiny,
             ].map((img, index) => (
               <Image
                 key={index}
@@ -60,9 +65,9 @@ async function DetailScreen({ params }: { params: { id: string } }) {
           <View style={{ gap: 8 }}>
             <SectionTitle>Types</SectionTitle>
             <FormList>
-              {mockData.types.map((type) => (
-                <>
-                  <FormItem>
+              {data.types.map((type, index) => (
+                <React.Fragment key={String(index)}>
+                  <FormItem href="#">
                     <Text
                       style={{
                         color: Colors.label,
@@ -73,16 +78,16 @@ async function DetailScreen({ params }: { params: { id: string } }) {
                       {type.type.name}
                     </Text>
                   </FormItem>
-                </>
+                </React.Fragment>
               ))}
             </FormList>
 
             <SectionTitle>Moves</SectionTitle>
 
             <FormList>
-              {mockData.moves.map((type) => (
-                <>
-                  <FormItem>
+              {data.moves.map((type, index) => (
+                <React.Fragment key={String(index)}>
+                  <FormItem href="#">
                     <Text
                       style={{
                         color: Colors.label,
@@ -93,7 +98,7 @@ async function DetailScreen({ params }: { params: { id: string } }) {
                       {type.move.name}
                     </Text>
                   </FormItem>
-                </>
+                </React.Fragment>
               ))}
             </FormList>
           </View>
@@ -103,7 +108,7 @@ async function DetailScreen({ params }: { params: { id: string } }) {
   );
 }
 
-function SectionTitle({ children }) {
+function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <Text
       style={{
@@ -118,5 +123,3 @@ function SectionTitle({ children }) {
     </Text>
   );
 }
-
-export { DetailScreen as default };

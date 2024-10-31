@@ -74,7 +74,7 @@ const items = [
   },
 ];
 
-async function IndexRoute() {
+export default async function IndexRoute() {
   // await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <ScrollView
@@ -87,35 +87,26 @@ async function IndexRoute() {
     >
       <FormList>
         {items.map(({ id, name, image }) => (
-          <>
-            <FormItem
-              screen="detail"
-              params={{
-                id: id,
-              }}
-            >
-              <Image
-                source={{ uri: image }}
-                style={{ width: 60, height: 48 }}
-                resizeMode="contain"
-              />
-              <View style={{ gap: 4 }}>
-                <Text
-                  style={{
-                    color: Colors.label,
-                    fontSize: 18,
-                    fontWeight: "600",
-                  }}
-                >
-                  {name}
-                </Text>
-              </View>
-            </FormItem>
-          </>
+          <FormItem href={"/detail/" + id} key={String(id)}>
+            <Image
+              source={{ uri: image }}
+              style={{ width: 60, height: 48 }}
+              resizeMode="contain"
+            />
+            <View style={{ gap: 4 }}>
+              <Text
+                style={{
+                  color: Colors.label,
+                  fontSize: 18,
+                  fontWeight: "600",
+                }}
+              >
+                {name}
+              </Text>
+            </View>
+          </FormItem>
         ))}
       </FormList>
     </ScrollView>
   );
 }
-
-export { IndexRoute as default };

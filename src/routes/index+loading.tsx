@@ -1,6 +1,6 @@
 "use client";
 
-import Skeleton, { SkeletonBox } from "@/components/skeleton";
+import Skeleton from "@/components/skeleton";
 import * as React from "react";
 import { ScrollView, View } from "react-native";
 

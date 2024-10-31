@@ -1,9 +1,12 @@
-import ClassicNavigation from '../components/classic-navigation';
+/// <reference types="react/canary" />
+
+import React from "react";
+
+import IndexScreen from "@/routes/index";
+import IndexLoading from "@/routes/index+loading";
 
 export default function IndexRoute() {
-  return <ClassicNavigation />;
+  return (
+    <React.Suspense fallback={<IndexLoading />}>{IndexScreen()}</React.Suspense>
+  );
 }
-
-export const unstable_settings = {
-  render: 'static',
-};
