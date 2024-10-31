@@ -1,4 +1,5 @@
 /// <reference types="react/canary" />
+
 import { ScreenOptions } from "@/components/react-navigation";
 import Skeleton, { SkeletonBox } from "@/components/skeleton";
 import DetailsScreen from "@/routes/details";

@@ -27,7 +27,6 @@ export default function RootLayout() {
         options={{
           title: "Home",
           headerRight: () => {
-            // const navigation = useNavigation();
             return (
               <Link href="/info">
                 <Ionicons
