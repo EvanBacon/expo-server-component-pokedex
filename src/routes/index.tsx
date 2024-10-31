@@ -3,6 +3,7 @@
 import { Image, ScrollView, Text, View } from "react-native";
 import { FormItem } from "@/components/form";
 import { FormList } from "@/components/form-list";
+import { PAGES } from "./local-data";
 
 const Colors = {
   systemBlue: "rgba(0, 122, 255, 1)",
@@ -109,4 +110,61 @@ export default async function IndexRoute() {
       </FormList>
     </ScrollView>
   );
+}
+
+export async function fetchPokemonAsync({ next }: { next?: string }) {
+  const data = (await fetch(next ?? "https://pokeapi.co/api/v2/pokemon").then(
+    (res) => res.json()
+  )) as {
+    count: number;
+    next: string;
+    previous: string | null;
+    results: { name: string; url: string }[];
+  };
+
+  // console.log(
+  //   data.results.map((item) => {
+  //     const id = item.url.split("/").slice(-2)[0];
+
+  //     return {
+  //       id,
+  //       name: item.name,
+  //       image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+  //     };
+  //   })
+  // );
+
+  return {
+    next: data.next,
+    children: (
+      <>
+        {data.results.map(({ name, url }) => {
+          const id = url.split("/").slice(-2)[0];
+          const img = PAGES[Number(id) - 1]?.image;
+          return (
+            <FormItem href={"/detail/" + id} key={String(id)}>
+              {img && (
+                <Image
+                  source={{ uri: img }}
+                  style={{ width: 60, height: 48 }}
+                  resizeMode="contain"
+                />
+              )}
+              <View style={{ gap: 4 }}>
+                <Text
+                  style={{
+                    color: Colors.label,
+                    fontSize: 18,
+                    fontWeight: "600",
+                  }}
+                >
+                  {name}
+                </Text>
+              </View>
+            </FormItem>
+          );
+        })}
+      </>
+    ),
+  };
 }
