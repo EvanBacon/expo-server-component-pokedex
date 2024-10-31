@@ -9,10 +9,6 @@ export default function InfoRoute() {
       <InfoPage
         dom={{
           contentInsetAdjustmentBehavior: "automatic",
-          //   containerStyle: {
-          //     paddingHorizontal: 16,
-          //     gap: 8,
-          //   },
           automaticallyAdjustsScrollIndicatorInsets: true,
         }}
       />
