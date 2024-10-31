@@ -42,7 +42,7 @@ export default function RootLayout() {
       />
       <Stack.Screen
         name="info"
-        options={{ title: "Info", presentation: "modal" }}
+        options={{ title: "Pokémon App", presentation: "modal" }}
       />
     </Stack>
   );

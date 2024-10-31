@@ -3,12 +3,38 @@
 import "../global.css";
 
 export default function Page(_: { dom?: import("expo/dom").DOMProps }) {
-  // Tailwind info page
+  // Tailwind info page about the pokemon app built with Expo and Tailwind
+
   return (
-    <main className="container mx-auto p-4">
-      <p className="mt-2 text-lg">
-        This is a Tailwind CSS page. It's a simple info page with some text.
-      </p>
-    </main>
+    <div className="p-4 space-y-4">
+      
+      <section className="space-y-2">
+        <h2 className="text-xl font-semibold">About</h2>
+        <p className="text-gray-700">
+          This is a Pokémon application built using modern web technologies to demonstrate 
+          cross-platform development capabilities.
+        </p>
+      </section>
+
+      <section className="space-y-2">
+        <h2 className="text-xl font-semibold">Technologies Used</h2>
+        <ul className="list-disc list-inside space-y-1 text-gray-700">
+          <li>Expo Router - Universal React framework</li>
+          <li>Tailwind CSS - Utility-first CSS framework</li>
+          <li>React Native - Mobile app development</li>
+          <li>React Server Actions - Data fetching</li>
+        </ul>
+      </section>
+
+      <section className="space-y-2">
+        <h2 className="text-xl font-semibold">Features</h2>
+        <ul className="list-disc list-inside space-y-1 text-gray-700">
+          <li>Browse Pokémon with smooth transitions</li>
+          <li>Responsive design that works on all devices</li>
+          <li>Truly native UI with iOS navigation</li>
+          <li>Fast performance with React Suspense</li>
+        </ul>
+      </section>
+    </div>
   );
 }
