@@ -6,7 +6,7 @@ import { Image, ScrollView, Text, View } from "react-native";
 import { ScreenOptions } from "@/components/react-navigation";
 import { FormItem } from "@/components/form";
 import { FormList } from "@/components/form-list";
-import { FadeIn } from "../components/fade-in";
+import { FadeIn } from "@/components/fade-in";
 
 const Colors = {
   systemBlue: "rgba(0, 122, 255, 1)",

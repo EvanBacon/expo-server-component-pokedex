@@ -3,12 +3,9 @@
 
 import React, { useState } from "react";
 
-import Skeleton from "@/components/skeleton";
 import { ActivityIndicator, ScrollView, View } from "react-native";
 import { fetchPokemonAsync } from "@/routes/index";
 import { FormList } from "@/components/form-list";
-
-// https://pokeapi.co/api/v2/pokemon
 
 export default function IndexRoute() {
   const [items, setItems] = useState<React.ReactElement[]>([]);
@@ -24,7 +21,11 @@ export default function IndexRoute() {
       const data = await fetchPokemonAsync({ next: next });
 
       setNext(data.next);
-      setItems((prev) => [...prev, ...data.children]);
+      setItems((prev) => [
+        ...prev,
+        // @ts-expect-error
+        ...data.children,
+      ]);
     } catch (error) {
       console.error(error);
     } finally {
@@ -59,25 +60,6 @@ export default function IndexRoute() {
     >
       <FormList>{items}</FormList>
       {loading && <ActivityIndicator />}
-    </ScrollView>
-  );
-}
-
-function Loading() {
-  return (
-    <ScrollView
-      contentInsetAdjustmentBehavior="automatic"
-      automaticallyAdjustsScrollIndicatorInsets
-    >
-      <View style={{ padding: 16, gap: 8 }}>
-        {new Array(10).fill(null).map((_, i) => (
-          <Skeleton
-            delay={30 * i}
-            key={i}
-            style={{ borderRadius: 10, height: 64 }}
-          />
-        ))}
-      </View>
     </ScrollView>
   );
 }

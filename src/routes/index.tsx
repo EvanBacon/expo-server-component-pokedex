@@ -122,18 +122,6 @@ export async function fetchPokemonAsync({ next }: { next?: string }) {
     results: { name: string; url: string }[];
   };
 
-  // console.log(
-  //   data.results.map((item) => {
-  //     const id = item.url.split("/").slice(-2)[0];
-
-  //     return {
-  //       id,
-  //       name: item.name,
-  //       image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
-  //     };
-  //   })
-  // );
-
   return {
     next: data.next,
     children: (
@@ -142,6 +130,7 @@ export async function fetchPokemonAsync({ next }: { next?: string }) {
           const id = url.split("/").slice(-2)[0];
           const img = PAGES[Number(id) - 1]?.image;
           return (
+            // @ts-expect-error
             <FormItem href={"/detail/" + id} key={String(id)}>
               {img && (
                 <Image

@@ -6,6 +6,7 @@ import { Link, Stack } from "expo-router";
 export default function RootLayout() {
   return (
     <Stack
+      // @ts-expect-error
       screenOptions={{
         ...(process.env.EXPO_OS === "ios"
           ? {
@@ -18,7 +19,7 @@ export default function RootLayout() {
                 // Hack to ensure the collapsed small header shows the shadow / border.
                 backgroundColor: "rgba(255,255,255,0.01)",
               },
-              // @ts-expect-error
+
               headerLargeStyle: {
                 backgroundColor: AppleColors.systemGroupedBackground,
               },
