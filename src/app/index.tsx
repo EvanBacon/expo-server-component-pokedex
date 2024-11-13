@@ -42,6 +42,7 @@ export default function IndexRoute() {
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
       automaticallyAdjustsScrollIndicatorInsets
+      automaticallyAdjustContentInsets
       contentContainerStyle={{
         padding: 16,
         gap: 16,

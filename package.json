@@ -17,7 +17,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@bacons/apple-colors": "^0.0.6",
+    "@bacons/apple-colors": "^0.0.7",
     "@expo/vector-icons": "^14.0.2",
     "@react-native-segmented-control/segmented-control": "2.5.4",
     "expo": "^52",

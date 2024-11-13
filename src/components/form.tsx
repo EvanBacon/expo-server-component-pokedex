@@ -3,10 +3,12 @@ import { TouchableHighlight, View, ViewProps } from "react-native";
 import React from "react";
 import { Href, Link } from "expo-router";
 
+import * as AppleColors from "@bacons/apple-colors";
 const Colors = {
-  systemGray4: "rgba(209, 209, 214, 1)",
-  secondarySystemGroupedBackground: "rgba(255, 255, 255, 1)",
-  separator: "rgba(61.2, 61.2, 66, 0.29)",
+  systemGray4: { semantic: ["systemGray4"] }, // "rgba(209, 209, 214, 1)",
+  // secondarySystemGroupedBackground:
+  //   AppleColors.secondarySystemGroupedBackground, // "rgba(255, 255, 255, 1)",
+  // separator: AppleColors.separator, // "rgba(61.2, 61.2, 66, 0.29)",
 };
 
 export function FormItem({

@@ -8,10 +8,11 @@ import { FormItem } from "@/components/form";
 import { FormList } from "@/components/form-list";
 import { FadeIn } from "@/components/fade-in";
 
+import * as AppleColors from "@bacons/apple-colors";
 const Colors = {
-  systemBlue: "rgba(0, 122, 255, 1)",
-  label: "rgba(0, 0, 0, 1)",
-  secondaryLabel: "rgba(61.2, 61.2, 66, 0.6)",
+  systemBlue: AppleColors.systemBlue,
+  label: AppleColors.label,
+  secondaryLabel: AppleColors.secondaryLabel,
 };
 
 export default async function DetailScreen({

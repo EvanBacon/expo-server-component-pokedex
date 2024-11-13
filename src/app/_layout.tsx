@@ -8,7 +8,7 @@ import {
   DarkTheme,
   DefaultTheme,
 } from "@react-navigation/native";
-import { useColorScheme } from "react-native";
+import { TouchableOpacity, useColorScheme } from "react-native";
 
 export default function RootLayout() {
   return (
@@ -16,23 +16,18 @@ export default function RootLayout() {
       value={useColorScheme() === "light" ? DefaultTheme : DarkTheme}
     >
       <Stack
-        // @ts-expect-error
         screenOptions={{
           ...(process.env.EXPO_OS === "ios"
             ? {
-                headerTransparent: true,
                 headerLargeTitle: true,
-                headerBlurEffect: "regular",
-                // headerShadowVisible: true,
-                // headerLargeTitleShadowVisible: false,
-                // headerStyle: {
-                //   // Hack to ensure the collapsed small header shows the shadow / border.
-                //   backgroundColor: "rgba(255,255,255,0.01)",
-                // },
-
-                // headerLargeStyle: {
-                //   backgroundColor: AppleColors.systemGroupedBackground,
-                // },
+                headerTransparent: true,
+                headerBlurEffect: "systemChromeMaterial",
+                headerLargeTitleShadowVisible: false,
+                headerShadowVisible: true,
+                headerLargeStyle: {
+                  // Make the large title transparent to match the background.
+                  backgroundColor: "transparent",
+                },
               }
             : {}),
         }}
@@ -43,13 +38,15 @@ export default function RootLayout() {
             title: "Home",
             headerRight: () => {
               return (
-                <Link href="/info">
-                  <Ionicons
-                    style={{ padding: 8 }}
-                    name="information-circle-outline"
-                    size={24}
-                    color={AppleColors.systemBlue}
-                  />
+                <Link href="/info" asChild>
+                  <TouchableOpacity hitSlop={24}>
+                    <Ionicons
+                      style={{ padding: 8, paddingRight: 0 }}
+                      name="information-circle-outline"
+                      size={24}
+                      color={AppleColors.systemBlue}
+                    />
+                  </TouchableOpacity>
                 </Link>
               );
             },
