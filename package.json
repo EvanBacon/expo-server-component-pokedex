@@ -1,5 +1,5 @@
 {
-  "name": "rsc-commerce",
+  "name": "rsc-pokedex",
   "license": "0BSD",
   "main": "expo-router/entry",
   "version": "1.0.0",

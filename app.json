@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rsc-commerce",
-    "slug": "rsc-commerce",
+    "name": "rsc-pokedex",
+    "slug": "rsc-pokedex",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
