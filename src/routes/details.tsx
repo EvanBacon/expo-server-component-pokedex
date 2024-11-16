@@ -15,7 +15,7 @@ const Colors = {
   secondaryLabel: AppleColors.secondaryLabel,
 };
 
-export default async function DetailScreen({
+export default async function renderDetails({
   params,
 }: {
   params: { id: string };
@@ -44,65 +44,65 @@ export default async function DetailScreen({
         automaticallyAdjustsScrollIndicatorInsets
       >
         <FadeIn>
-          <ScrollView horizontal pagingEnabled>
-            {[
-              data.sprites.front_default || data.sprites.front_shiny,
-              data.sprites.back_default || data.sprites.back_shiny,
-            ].map((img, index) => (
-              <Image
-                key={index}
-                source={{ uri: img }}
-                style={{ width: 360, height: 300 }}
-                resizeMode="contain"
-              />
-            ))}
-          </ScrollView>
+          <Image
+            source={{
+              uri: data.sprites.front_default || data.sprites.front_shiny,
+            }}
+            style={{ height: 300 }}
+            resizeMode="contain"
+          />
         </FadeIn>
 
-        <FadeIn>
-          <View style={{ gap: 8 }}>
-            <SectionTitle>Types</SectionTitle>
-            <FormList>
-              {data.types.map((type, index) => (
-                <React.Fragment key={String(index)}>
-                  <FormItem href="#">
-                    <Text
-                      style={{
-                        color: Colors.label,
-                        fontSize: 18,
-                        fontWeight: "600",
-                      }}
-                    >
-                      {type.type.name}
-                    </Text>
-                  </FormItem>
-                </React.Fragment>
-              ))}
-            </FormList>
-
-            <SectionTitle>Moves</SectionTitle>
-
-            <FormList>
-              {data.moves.map((type, index) => (
-                <React.Fragment key={String(index)}>
-                  <FormItem href="#">
-                    <Text
-                      style={{
-                        color: Colors.label,
-                        fontSize: 18,
-                        fontWeight: "600",
-                      }}
-                    >
-                      {type.move.name}
-                    </Text>
-                  </FormItem>
-                </React.Fragment>
-              ))}
-            </FormList>
-          </View>
-        </FadeIn>
+        <PokemonDetails data={data} />
       </ScrollView>
     </>
+  );
+}
+
+async function PokemonDetails({ data }: { data: any }) {
+  return (
+    <FadeIn>
+      <View style={{ gap: 8 }}>
+        <SectionTitle>Types</SectionTitle>
+        <FormList>
+          {data.types.map((type, index) => (
+            <React.Fragment key={String(index)}>
+              <FormItem href="#">
+                <Text
+                  style={{
+                    color: Colors.label,
+                    fontSize: 18,
+                    fontWeight: "600",
+                  }}
+                >
+                  {type.type.name}
+                </Text>
+              </FormItem>
+            </React.Fragment>
+          ))}
+        </FormList>
+
+        <SectionTitle>Moves</SectionTitle>
+
+        <FormList>
+          {data.moves.map((type, index) => (
+            <React.Fragment key={String(index)}>
+              <FormItem href="#">
+                <Text
+                  style={{
+                    color: Colors.label,
+                    fontSize: 18,
+                    fontWeight: "600",
+                  }}
+                >
+                  {type.move.name}
+                </Text>
+              </FormItem>
+            </React.Fragment>
+          ))}
+        </FormList>
+      </View>
+    </FadeIn>
   );
 }
 

@@ -24,7 +24,6 @@ export async function fetchPokemonAsync({ next }: { next?: string }) {
           const id = url.split("/").slice(-2)[0];
           const img = PAGES[Number(id) - 1]?.image;
           return (
-            // @ts-expect-error
             <FormItem href={"/detail/" + id} key={String(id)}>
               {img && (
                 <Image
@@ -39,6 +38,7 @@ export async function fetchPokemonAsync({ next }: { next?: string }) {
                     color: AppleColors.label,
                     fontSize: 18,
                     fontWeight: "600",
+                    textTransform: "capitalize",
                   }}
                 >
                   {name}

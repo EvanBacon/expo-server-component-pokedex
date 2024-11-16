@@ -1,7 +1,14 @@
 "use client";
 
 import React from "react";
-import { View, StyleSheet, Animated, Easing, ViewStyle } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Animated,
+  Easing,
+  ViewStyle,
+  useColorScheme,
+} from "react-native";
 
 const BASE_COLORS = {
   dark: { primary: "rgb(17, 17, 17)", secondary: "rgb(51, 51, 51)" },
@@ -60,12 +67,13 @@ export const SkeletonBox = ({
 const Skeleton = ({
   style,
   delay,
-  dark,
+  dark: inputDark,
 }: {
   style?: ViewStyle;
   delay?: number;
   dark?: boolean;
 } = {}) => {
+  const dark = inputDark ?? useColorScheme() !== "light";
   const translateX = React.useRef(new Animated.Value(-1)).current;
   const [width, setWidth] = React.useState(150);
 

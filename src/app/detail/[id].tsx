@@ -2,14 +2,16 @@
 
 import { ScreenOptions } from "@/components/react-navigation";
 import Skeleton, { SkeletonBox } from "@/components/skeleton";
-import renderDetailsScreen from "@/routes/details";
+import renderDetails from "@/routes/details";
 import { useLocalSearchParams } from "expo-router";
 import React, { useMemo } from "react";
 import { ScrollView, View } from "react-native";
 
-export default function IndexRoute() {
+export { ErrorBoundary } from "expo-router";
+
+export default function DetailRoute() {
   const params = useLocalSearchParams<{ id: string }>();
-  const contents = useMemo(() => renderDetailsScreen({ params }), [params.id]);
+  const contents = useMemo(() => renderDetails({ params }), [params.id]);
   return (
     <React.Suspense fallback={<DetailsLoading />}>{contents}</React.Suspense>
   );

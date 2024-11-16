@@ -7,6 +7,8 @@ import { ActivityIndicator, ScrollView } from "react-native";
 import { fetchPokemonAsync } from "@/routes/index";
 import { FormList } from "@/components/form-list";
 
+export { ErrorBoundary } from "expo-router";
+
 export default function IndexRoute() {
   const [items, setItems] = useState<React.ReactElement[]>([]);
   const [next, setNext] = useState<string>();
@@ -48,7 +50,7 @@ export default function IndexRoute() {
         gap: 16,
       }}
       onScroll={({ nativeEvent }) => {
-        const paddingToBottom = 20;
+        const paddingToBottom = 300;
         const isCloseToBottom =
           nativeEvent.layoutMeasurement.height + nativeEvent.contentOffset.y >=
           nativeEvent.contentSize.height - paddingToBottom;

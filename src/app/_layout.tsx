@@ -10,6 +10,8 @@ import {
 } from "@react-navigation/native";
 import { TouchableOpacity, useColorScheme } from "react-native";
 
+export { ErrorBoundary } from "expo-router";
+
 export default function RootLayout() {
   return (
     <ThemeProvider
