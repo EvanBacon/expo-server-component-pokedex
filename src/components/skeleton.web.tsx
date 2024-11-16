@@ -1,5 +1,6 @@
 // Use CSS to prevent blocking the suspense loading state with a skeleton loader.
 import React from "react";
+import { useColorScheme } from "react-native";
 
 export const SkeletonBox = ({
   width,
@@ -30,12 +31,14 @@ export const SkeletonBox = ({
 const Skeleton = ({
   style,
   delay,
-  dark,
+  dark: inputDark,
 }: {
   style?: any;
   delay?: number;
   dark?: boolean;
 } = {}) => {
+  const dark = inputDark ?? useColorScheme() !== "light";
+
   return (
     <div
       style={{
