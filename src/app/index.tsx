@@ -3,7 +3,7 @@
 
 import React, { useState } from "react";
 
-import { ActivityIndicator, ScrollView, View } from "react-native";
+import { ActivityIndicator, ScrollView } from "react-native";
 import { fetchPokemonAsync } from "@/routes/index";
 import { FormList } from "@/components/form-list";
 
