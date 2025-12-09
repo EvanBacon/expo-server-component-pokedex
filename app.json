@@ -34,11 +34,13 @@
           "asyncRoutes": true
         }
       ],
-      "expo-font"
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
-      "reactServerFunctions": true
+      "reactServerFunctions": true,
+      "reactCompiler": true
     },
     "extra": {
       "eas": {

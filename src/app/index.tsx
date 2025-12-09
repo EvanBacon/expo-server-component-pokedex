@@ -1,5 +1,4 @@
 "use client";
-/// <reference types="react/canary" />
 
 import React, { useState } from "react";
 
